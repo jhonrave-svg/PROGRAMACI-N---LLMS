@@ -1,0 +1,8 @@
+El Problema: Tienes un dataset con variables numéricas y categóricas. Necesitas preparar los datos automáticamente para un modelo.
+
+Escribe una función transformar_datos(df) que:
+
+Detecte columnas numéricas y categóricas
+Aplique OneHotEncoder
+Aplique StandardScaler
+Devuelva la matriz transformada
