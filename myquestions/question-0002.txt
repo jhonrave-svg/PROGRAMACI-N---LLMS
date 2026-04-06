@@ -1,0 +1,16 @@
+El Problema: los valores extremos pueden afectar el análisis de datos.
+
+Tu misión
+Escribe una función llamada detectar_outliers_iqr(df, col) que:
+
+Reciba un DataFrame y el nombre de una columna numérica.
+Calcule:
+Primer cuartil (Q1)
+Tercer cuartil (Q3)
+Rango intercuartílico (IQR = Q3 - Q1)
+Determine los límites:
+Inferior: Q1 - 1.5 * IQR
+Superior: Q3 + 1.5 * IQR
+Identifique como outliers aquellos valores fuera de estos límites
+Agregue una columna "es_outlier" con valores booleanos
+Devuelva el DataFrame actualizado
