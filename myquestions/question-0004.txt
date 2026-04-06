@@ -1,0 +1,14 @@
+El Problema: en datasets con muchas variables (alta dimensionalidad), los modelos pueden volverse más complejos, lentos y propensos al sobreajuste (overfitting).
+Además, muchas variables pueden contener información redundante o altamente correlacionada.
+
+Tu Misión
+
+Escribe una función llamada reducir_dimensionalidad(X, n_componentes) que:
+
+Reciba:
+Una matriz de datos X
+El número de componentes principales deseados
+Aplique el algoritmo PCA de sklearn
+Reduzca la dimensionalidad de los datos a n_componentes
+Devuelva la matriz transformada resultante
+Asegure que la salida tenga la nueva dimensionalidad especificada
