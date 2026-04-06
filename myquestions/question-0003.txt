@@ -1,0 +1,14 @@
+El Problema: en problemas de clasificación, especialmente cuando las clases están desbalanceadas, el uso de métricas como el accuracy puede ser engañoso
+El F1-score es una métrica que combina precisión (precision) y exhaustividad (recall), proporcionando una evaluación más equilibrada del modelo.
+
+Tu misión
+Escribe una función llamada evaluar_f1(X, y) que:
+
+Reciba:
+Una matriz de características X
+Un vector de etiquetas y
+Divida los datos en conjuntos de entrenamiento y prueba (80/20).
+Entrene un modelo de clasificación utilizando LogisticRegression.
+Realice predicciones sobre el conjunto de prueba.
+Calcule el F1-score del modelo.
+Devuelva el valor del F1-score obtenido
