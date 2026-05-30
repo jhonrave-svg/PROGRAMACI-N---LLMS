@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def analizar_estres_hidrico(df):
 
@@ -16,16 +17,12 @@ def analizar_estres_hidrico(df):
 
     periodos = ["Madrugada", "Cénit", "Ocaso"]
 
-    df["periodo"] = pd.Series(
-        pd.Categorical(
-            pd.np.select(condiciones, periodos)
-        )
-    )
+    df["periodo"] = np.select(condiciones, periodos)
 
     # 3. Filtrar ndvi > 0.6
     df = df[df["ndvi"] > 0.6]
 
-    # 4. Promedio de humedad por lote y periodo
+    # 4. Promedio de humedad agrupado por lote_id y periodo
     resultado = df.groupby(
         ["lote_id", "periodo"]
     )["humedad"].mean()
