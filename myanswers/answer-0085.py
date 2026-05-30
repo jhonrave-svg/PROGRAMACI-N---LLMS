@@ -15,14 +15,14 @@ def analizar_estres_hidrico(df):
         df["timestamp"].dt.hour.between(18, 23)
     ]
 
-    periodos = ["Madrugada", "Cénit", "Ocaso"]
+    opciones = ["Madrugada", "Cénit", "Ocaso"]
 
-    df["periodo"] = np.select(condiciones, periodos)
+    df["periodo"] = np.select(condiciones, opciones)
 
     # 3. Filtrar ndvi > 0.6
     df = df[df["ndvi"] > 0.6]
 
-    # 4. Promedio de humedad agrupado por lote_id y periodo
+    # 4. Promedio de humedad por lote y periodo
     resultado = df.groupby(
         ["lote_id", "periodo"]
     )["humedad"].mean()
