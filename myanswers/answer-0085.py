@@ -2,26 +2,31 @@ import pandas as pd
 
 def analizar_estres_hidrico(df):
 
-    # 1. Convertir timestamp a datetime
     df = df.copy()
+
+    # 1. Convertir timestamp a datetime
     df["timestamp"] = pd.to_datetime(df["timestamp"])
 
-    # 2. Crear columna periodo
-    def clasificar_periodo(hora):
-        if 0 <= hora <= 5:
-            return "Madrugada"
-        elif 6 <= hora <= 17:
-            return "Cénit"
-        else:
-            return "Ocaso"
+    # 2. Clasificar periodo
+    condiciones = [
+        df["timestamp"].dt.hour.between(0, 5),
+        df["timestamp"].dt.hour.between(6, 17),
+        df["timestamp"].dt.hour.between(18, 23)
+    ]
 
-    df["periodo"] = df["timestamp"].dt.hour.apply(clasificar_periodo)
+    periodos = ["Madrugada", "Cénit", "Ocaso"]
 
-    # 3. Filtrar registros con ndvi > 0.6
-    df_filtrado = df[df["ndvi"] > 0.6]
+    df["periodo"] = pd.Series(
+        pd.Categorical(
+            pd.np.select(condiciones, periodos)
+        )
+    )
 
-    # 4. Promedio de humedad agrupado por lote_id y periodo
-    resultado = df_filtrado.groupby(
+    # 3. Filtrar ndvi > 0.6
+    df = df[df["ndvi"] > 0.6]
+
+    # 4. Promedio de humedad por lote y periodo
+    resultado = df.groupby(
         ["lote_id", "periodo"]
     )["humedad"].mean()
 
